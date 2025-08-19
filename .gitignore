@@ -1,0 +1,46 @@
+### Archives / Artifacts
+*.tar.gz
+
+### macOS
+.DS_Store
+
+### Local tooling / temp
+.local
+
+### Dependencies
+node_modules/
+
+### Build outputs
+dist/
+
+### Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+### Environment files (keep example)
+.env
+.env.*
+!.env.example
+
+### TypeScript build info
+*.tsbuildinfo
+
+### Vite / framework caches
+.vite/
+
+### Coverage
+coverage/
+
+### Editors / IDE
+.vscode/
+.idea/
+*.swp
+
+### Legacy / unused (remove if not needed)
+server/public
+
+### Misc project specific
+vite.config.ts.*
