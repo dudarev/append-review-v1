@@ -171,10 +171,14 @@ function AppContent() {
         {renderCurrentView()}
       </main>
 
-      {/* Subtle Version Footer */}
-      <footer className="max-w-6xl mx-auto w-full px-4 py-2 md:py-3">
-        <div className="text-right text-xs text-gray-500 dark:text-gray-400 select-none">
-          v{import.meta.env.VITE_APP_VERSION}
+      {/* Footer with subtle divider and version */}
+      <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+        <div className="max-w-6xl mx-auto w-full px-4 py-2 md:py-2">
+          <div className="flex items-center justify-end">
+            <span className="text-[11px] text-gray-500 dark:text-gray-400 select-none">
+              v{import.meta.env.VITE_APP_VERSION}
+            </span>
+          </div>
         </div>
       </footer>
 
