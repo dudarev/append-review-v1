@@ -6,6 +6,21 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 
 ## [Unreleased]
 
+### Changed
+- Improve contrast of the active desktop navigation tab in dark mode for better readability.
+
+## [1.1.6] - 2025-09-12
+
+### Changed
+- Mobile: Hide footer completely to avoid partial overlap with bottom nav.
+- Mobile: Add Settings button and Theme toggle to the header alongside About for discoverability.
+
+## [1.1.4] - 2025-09-12
+
+### Added
+- Footer with links to the GitHub repository and Karpathy’s note.
+- About dialog (accessible from header and footer) with project summary, version, links, and keyboard shortcuts.
+
 ## [1.1.3] - 2025-09-12
 
 ### Added
@@ -60,7 +75,10 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 ### Changed
 - Bumped package version to 1.0.1.
 
-[Unreleased]: https://github.com/dudarev/append-review-v1/compare/v1.1.3...HEAD
+[Unreleased]: https://github.com/dudarev/append-review-v1/compare/v1.1.6...HEAD
+[1.1.6]: https://github.com/dudarev/append-review-v1/compare/v1.1.5...v1.1.6
+[1.1.4]: https://github.com/dudarev/append-review-v1/compare/v1.1.3...v1.1.4
+[1.1.4]: https://github.com/dudarev/append-review-v1/compare/v1.1.3...v1.1.4
 [1.1.3]: https://github.com/dudarev/append-review-v1/compare/v1.1.2...v1.1.3
 [1.1.2]: https://github.com/dudarev/append-review-v1/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/dudarev/append-review-v1/compare/v1.1.0...v1.1.1

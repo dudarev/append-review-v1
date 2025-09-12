@@ -12,6 +12,8 @@ Scope: This project primarily implements the Review part of that idea. The “Ap
 
 ---
 
+I would like command 1, command 2, command 3 work because now when I press them I am not able to navigate to other tabs in Chrome. 
+
 I want to see more text in the review window. Potentially it needs to be wrapped in the placeholder. 
 
 Footer: Add a small footer with links to the GitHub repo and to Karpathy’s note. Consider an “About” link/modal (like Settings) that summarizes the project, version, links, and keyboard shortcuts.

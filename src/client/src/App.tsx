@@ -3,6 +3,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { useThemeContext } from "@/components/theme-provider";
 import { MobileNav } from "@/components/mobile-nav";
 import { SettingsDialog } from "@/components/settings-dialog";
+import { AboutDialog } from "@/components/about-dialog";
+import { Footer } from "@/components/footer";
 import { AppendPage } from "@/pages/append";
 import { ReviewPage } from "@/pages/review";
 import { RankingPage } from "@/pages/ranking";
@@ -134,7 +136,7 @@ function AppContent() {
                   className={cn(
                     "px-4 py-2 text-sm font-medium",
                     currentView === item.id
-                      ? "bg-white dark:bg-gray-600 text-primary-600 dark:text-primary-400 shadow-sm"
+                      ? "bg-white dark:bg-gray-600 text-primary-600 dark:text-white shadow-sm"
                       : "text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
                   )}
                 >
@@ -142,7 +144,7 @@ function AppContent() {
                 </Button>
               ))}
             </nav>
-            
+            <AboutDialog />
             <SettingsDialog
               onResetRankings={resetRankings}
               onClearAllData={clearAllData}
@@ -173,6 +175,26 @@ function AppContent() {
             <span className="text-base font-semibold">Append & Review</span>
             <span className="text-[10px] text-gray-500 dark:text-gray-400 select-none">v{import.meta.env.VITE_APP_VERSION}</span>
           </div>
+          <div className="flex items-center space-x-1">
+            <AboutDialog />
+            <SettingsDialog
+              onResetRankings={resetRankings}
+              onClearAllData={clearAllData}
+            />
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              data-testid="button-theme-toggle-mobile"
+            >
+              {theme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
+              <span className="sr-only">Toggle theme</span>
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -180,7 +202,7 @@ function AppContent() {
       <main className="flex-1 max-w-6xl mx-auto w-full px-4 py-6 pb-20 md:pb-6">
         {renderCurrentView()}
       </main>
-
+      <Footer />
 
       {/* Mobile Navigation */}
       <MobileNav currentView={currentView} onViewChange={setCurrentView} />
