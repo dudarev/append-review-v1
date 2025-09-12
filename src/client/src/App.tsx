@@ -121,6 +121,7 @@ function AppContent() {
           <div className="flex items-center space-x-3">
             <ClipboardList className="text-primary-500 text-xl h-6 w-6" />
             <h1 className="text-xl font-semibold">Append & Review</h1>
+            <span className="text-xs text-gray-500 dark:text-gray-400 select-none">v{import.meta.env.VITE_APP_VERSION}</span>
           </div>
           <div className="flex items-center space-x-4">
             {/* Desktop Navigation */}
@@ -166,21 +167,22 @@ function AppContent() {
         </div>
       </header>
 
+      {/* Mobile Header (compact) */}
+      <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-2 md:hidden">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <ClipboardList className="text-primary-500 h-5 w-5" />
+            <span className="text-base font-semibold">Append & Review</span>
+            <span className="text-[10px] text-gray-500 dark:text-gray-400 select-none">v{import.meta.env.VITE_APP_VERSION}</span>
+          </div>
+        </div>
+      </header>
+
       {/* Main Content */}
       <main className="flex-1 max-w-6xl mx-auto w-full px-4 py-6 pb-20 md:pb-6">
         {renderCurrentView()}
       </main>
 
-      {/* Footer with subtle divider and version */}
-      <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-        <div className="max-w-6xl mx-auto w-full px-4 py-2 md:py-2">
-          <div className="flex items-center justify-end">
-            <span className="text-[11px] text-gray-500 dark:text-gray-400 select-none">
-              v{import.meta.env.VITE_APP_VERSION}
-            </span>
-          </div>
-        </div>
-      </footer>
 
       {/* Mobile Navigation */}
       <MobileNav currentView={currentView} onViewChange={setCurrentView} />

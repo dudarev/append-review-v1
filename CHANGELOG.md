@@ -9,6 +9,11 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 ### Added
 - 
 
+## [1.0.3] - 2025-09-12
+
+### Changed
+- Moved version label next to the app title in the header (desktop and a compact mobile header) for visibility across devices; removed footer version.
+
 ## [1.0.2] - 2025-09-12
 
 ### Changed
@@ -23,6 +28,7 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 ### Changed
 - Bumped package version to 1.0.1.
 
-[Unreleased]: https://github.com/dudarev/append-review-v1/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/dudarev/append-review-v1/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/dudarev/append-review-v1/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/dudarev/append-review-v1/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/dudarev/append-review-v1/compare/v1.0.0...v1.0.1
