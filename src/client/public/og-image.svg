@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Append &amp; Review — Turn notes into spaced repetition.">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#ffffff"/>
+
+  <!-- Top nav chips (inspired by app) -->
+  <g font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="22" font-weight="600">
+    <!-- container background hint -->
+    <rect x="860" y="32" width="300" height="48" rx="12" fill="#f8fafc" stroke="#e5e7eb"/>
+    <!-- active: Append -->
+    <rect x="872" y="40" width="92" height="32" rx="8" fill="#2563eb"/>
+    <text x="918" y="62" text-anchor="middle" fill="#ffffff">Append</text>
+    <!-- others -->
+    <rect x="968" y="40" width="92" height="32" rx="8" fill="#eef2f7" stroke="#e5e7eb"/>
+    <text x="1014" y="62" text-anchor="middle" fill="#334155">Review</text>
+    <rect x="1064" y="40" width="92" height="32" rx="8" fill="#eef2f7" stroke="#e5e7eb"/>
+    <text x="1110" y="62" text-anchor="middle" fill="#334155">Ranking</text>
+  </g>
+
+  <!-- Content -->
+  <g font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" letter-spacing="0.2">
+    <text x="100" y="220" font-size="72" font-weight="800" fill="#0f172a">Append &amp; Review</text>
+    <text x="100" y="280" font-size="36" font-weight="700" fill="#334155">Turn notes into spaced repetition.</text>
+    <text x="100" y="320" font-size="26" fill="#64748b">Private. Local‑first. Open‑source. No accounts.</text>
+
+    <!-- CTA style text block -->
+    <g transform="translate(100,360)">
+      <rect x="0" y="-36" width="560" height="64" rx="12" fill="#f1f5f9" stroke="#e2e8f0"/>
+      <text x="20" y="4" font-size="26" font-weight="700" fill="#0f172a">Open the app →</text>
+      <text x="240" y="4" font-size="26" fill="#2563eb">v1.append.review</text>
+    </g>
+
+    <!-- Feature bullets -->
+    <g font-size="22" fill="#475569">
+      <circle cx="110" cy="420" r="4" fill="#94a3b8"/>
+      <text x="120" y="428">Append • Review • Rank • Archive</text>
+      <circle cx="110" cy="456" r="4" fill="#94a3b8"/>
+      <text x="120" y="464">ELO‑powered practice that surfaces what matters</text>
+      <circle cx="110" cy="492" r="4" fill="#94a3b8"/>
+      <text x="120" y="500">Your data stays in the browser (localStorage)</text>
+    </g>
+  </g>
+
+  <!-- Border -->
+  <rect x="0.5" y="0.5" width="1199" height="629" fill="none" stroke="#e5e7eb"/>
+</svg>
+
