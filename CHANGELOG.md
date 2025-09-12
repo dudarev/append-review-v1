@@ -9,6 +9,17 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 ### Added
 - 
 
+## [1.1.0] - 2025-09-12
+
+### Removed
+- Preview pane on Append page (desktop and mobile)
+- "Apply Changes" button (changes auto-apply when navigating to Review/Ranking)
+- Notes extracted banner on Append page
+
+### Changed
+- Editor now uses full width on Append page for better focus
+- Clarified auto-apply behavior by removing redundant controls
+
 ## [1.0.4] - 2025-09-12
 
 ### Changed
@@ -33,7 +44,8 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 ### Changed
 - Bumped package version to 1.0.1.
 
-[Unreleased]: https://github.com/dudarev/append-review-v1/compare/v1.0.4...HEAD
+[Unreleased]: https://github.com/dudarev/append-review-v1/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/dudarev/append-review-v1/compare/v1.0.4...v1.1.0
 [1.0.4]: https://github.com/dudarev/append-review-v1/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/dudarev/append-review-v1/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/dudarev/append-review-v1/compare/v1.0.1...v1.0.2

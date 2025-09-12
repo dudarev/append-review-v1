@@ -46,6 +46,12 @@ This repository hosts a React (Vite) frontend and a lightweight Express server f
   - Update `src/package.json` (and lockfile) and move Unreleased entries under the new version with date on release.
   - Optional: tag releases `git tag -a vX.Y.Z -m "Release vX.Y.Z" && git push --tags`.
 
+### Agent expectations (UI changes)
+- Any user-visible UI change must include:
+  - A CHANGELOG entry under the appropriate category (e.g., Changed/Removed).
+  - A SemVer bump in `src/package.json` (at least PATCH; MINOR if removing or altering a primary workflow or feature).
+  - Keep the version displayed in the header in sync via `import.meta.env.VITE_APP_VERSION` (derived from `src/package.json`).
+
 ## Release Process (Quick)
 - Add/change code; update CHANGELOG under Unreleased.
 - Decide version bump (semver) and update `src/package.json` (e.g., `cd src && npm version patch --no-git-tag-version`).

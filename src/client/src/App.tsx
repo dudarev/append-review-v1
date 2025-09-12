@@ -85,8 +85,6 @@ function AppContent() {
           <AppendPage
             markdownContent={data.markdownContent}
             onMarkdownChange={updateMarkdown}
-            onApplyChanges={parseAndApplyNotes}
-            notesCount={activeNotes.length}
           />
         );
       case "review":
