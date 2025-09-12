@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Append &amp; Review – Local-first ELO ranking for notes">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#111827"/>
+    </linearGradient>
+    <radialGradient id="glowCyan" cx="0.2" cy="0.2" r="0.6">
+      <stop offset="0%" stop-color="#22d3ee" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowViolet" cx="0.9" cy="0.8" r="0.7">
+      <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#a78bfa" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur80" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="80"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Glow accents -->
+  <circle cx="280" cy="160" r="240" fill="url(#glowCyan)" filter="url(#blur80)"/>
+  <circle cx="980" cy="520" r="260" fill="url(#glowViolet)" filter="url(#blur80)"/>
+
+  <!-- Subtle grid -->
+  <g opacity="0.07" stroke="#9ca3af" stroke-width="1">
+    <path d="M0 90 H1200 M0 180 H1200 M0 270 H1200 M0 360 H1200 M0 450 H1200 M0 540 H1200"/>
+    <path d="M120 0 V630 M240 0 V630 M360 0 V630 M480 0 V630 M600 0 V630 M720 0 V630 M840 0 V630 M960 0 V630 M1080 0 V630"/>
+  </g>
+
+  <!-- Content -->
+  <g fill="#e5e7eb" font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <text x="100" y="300" font-size="72" font-weight="700" letter-spacing="0.5">
+      v1.append.review
+    </text>
+    <text x="100" y="360" font-size="32" fill="#cbd5e1">
+      Local-first ELO ranking for notes
+    </text>
+    <text x="100" y="408" font-size="24" fill="#94a3b8">
+      React • Vite • TypeScript
+    </text>
+  </g>
+
+  <!-- Border -->
+  <rect x="0.5" y="0.5" width="1199" height="629" fill="none" stroke="#1f2937"/>
+</svg>
