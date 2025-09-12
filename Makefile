@@ -1,7 +1,7 @@
 # Append Review Project Makefile
 # This Makefile helps you set up and run the project locally
 
-.PHONY: help install dev build start clean check build-static build-subdir 
+.PHONY: help install dev build start clean check build-static build-subdir port-status kill-port
 
 # Default target
 help: ## Show this help message
@@ -107,3 +107,19 @@ status: ## Show project status
 	@echo "- New setup: make setup"
 	@echo "- Start development: make dev"
 	@echo "- Build for production: make build"
+
+# Port helpers (macOS/Linux)
+PORT ?= 5000
+port-status: ## Show process listening on $(PORT)
+	@echo "Checking port $(PORT)..."; \
+	lsof -nP -iTCP:$(PORT) -sTCP:LISTEN || true
+
+kill-port: ## Kill any process on $(PORT)
+	@echo "Killing processes on port $(PORT)..."; \
+	pids=$$(lsof -tiTCP:$(PORT) -sTCP:LISTEN); \
+	if [ -n "$$pids" ]; then \
+		echo "Found PIDs: $$pids"; \
+		kill -9 $$pids || true; \
+	else \
+		echo "No process is listening on $(PORT)"; \
+	fi
