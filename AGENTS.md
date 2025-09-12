@@ -55,3 +55,12 @@ This repository hosts a React (Vite) frontend and a lightweight Express server f
 - No DB; data is stored in browser localStorage (`appendReview:v1`).
 - Configure static deploy base via `VITE_BASE_PATH` (`./` or `/append/`).
 - Do not commit real `.env`; use `.env.example` for reference.
+
+## Docs Stewardship
+- Owner: maintainers (keep this section and docs current).
+- Source of truth for architecture: `docs/architecture.md`.
+- Update triggers (when any apply):
+  - Build/dev pipeline changes (Vite config, esbuild, dev server)
+  - Core dependencies added/removed (React, Radix UI, Tailwind, Zod, Express)
+  - Storage model changes (localStorage vs any backend persistence)
+- Avoid exhaustive dependency lists in docs; link to `src/package.json` instead.

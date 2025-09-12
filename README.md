@@ -139,6 +139,9 @@ Run `make status` to check your setup status and see what might be missing.
 
 ## Technology Stack
 
+See Architecture for an overview of components and tooling:
+
+- docs/architecture.md
 
 ## Static Deployment (Cloudflare Pages / Subfolder)
 
