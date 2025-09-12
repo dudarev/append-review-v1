@@ -6,11 +6,14 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 
 ## [Unreleased]
 
+## [1.1.3] - 2025-09-12
+
 ### Added
-- Makefile targets: `tag` (create annotated tag from src/package.json) and `push-tags` (push tags to origin).
+- Light website social image (SVG) and generated PNG at `src/client/public/og-image.(svg|png)`.
+- Makefile target `social-png` to convert SVG previews to PNG (tries rsvg/resvg/inkscape/ImageMagick).
 
 ### Changed
-- Tagging is now required for every release; AGENTS.md updated to make tagging mandatory and document quick commands. This ensures GitHub compare links resolve correctly.
+- Meta tags in `src/client/index.html` now reference PNG for maximum compatibility and align copy to the new message ("Gamify your note review").
 
 ## [1.1.2] - 2025-09-12
 
@@ -57,7 +60,8 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 ### Changed
 - Bumped package version to 1.0.1.
 
-[Unreleased]: https://github.com/dudarev/append-review-v1/compare/v1.1.2...HEAD
+[Unreleased]: https://github.com/dudarev/append-review-v1/compare/v1.1.3...HEAD
+[1.1.3]: https://github.com/dudarev/append-review-v1/compare/v1.1.2...v1.1.3
 [1.1.2]: https://github.com/dudarev/append-review-v1/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/dudarev/append-review-v1/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/dudarev/append-review-v1/compare/v1.0.4...v1.1.0
