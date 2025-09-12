@@ -171,6 +171,13 @@ function AppContent() {
         {renderCurrentView()}
       </main>
 
+      {/* Subtle Version Footer */}
+      <footer className="max-w-6xl mx-auto w-full px-4 py-2 md:py-3">
+        <div className="text-right text-xs text-gray-500 dark:text-gray-400 select-none">
+          v{import.meta.env.VITE_APP_VERSION}
+        </div>
+      </footer>
+
       {/* Mobile Navigation */}
       <MobileNav currentView={currentView} onViewChange={setCurrentView} />
     </div>
