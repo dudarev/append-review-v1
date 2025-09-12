@@ -1,5 +1,11 @@
 # Append Review v1 - Local Development Setup
 
+Local-first note ranking: append, review, and rank via ELO.
+
+[![CI](https://github.com/dudarev/append-review-v1/actions/workflows/ci.yml/badge.svg)](https://github.com/dudarev/append-review-v1/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
 This project is a React + Express.js application for reviewing and ranking notes using an ELO algorithm. All data is stored locally in the browser using localStorage.
 
 ## Quick Start
@@ -99,8 +105,8 @@ This project uses **localStorage** for data persistence as per the PRD requireme
 
 ## Ports
 
-- **Development:** http://localhost:5000 (both client and API)
-- **API Endpoints:** http://localhost:5000/api/*
+- **Development:** http://localhost:5252 (both client and API)
+- **API Endpoints:** http://localhost:5252/api/*
 
 ## Troubleshooting
 

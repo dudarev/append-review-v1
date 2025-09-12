@@ -11,7 +11,7 @@ This repository hosts a React (Vite) frontend and a lightweight Express server f
 
 ## Build, Test, and Development Commands
 - `make setup` — Install dependencies and run type check.
-- `make dev` — Start Express + Vite at `http://localhost:5000`.
+- `make dev` — Start Express + Vite at `http://localhost:5252`.
 - `make build` — Build client and server bundles into `src/dist/` and `src/dist/public/`.
 - `make start` — Run production server from `dist/`.
 - `make build-static` — Build static bundle with relative asset paths.

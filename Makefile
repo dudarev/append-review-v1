@@ -19,10 +19,13 @@ install: ## Install all dependencies
 	@echo "✅ Dependencies installed"
 
 # Development
+
+PORT ?= 5252
+
 dev: ## Start development server (client + server)
 	@echo "Starting development server..."
-	@echo "🚀 Client will be available at http://localhost:5000"
-	@echo "📡 API will be available at http://localhost:5000/api"
+	@echo "🚀 Client will be available at http://localhost:$(PORT)"
+	@echo "📡 API will be available at http://localhost:$(PORT)/api"
 	@cd src && npm run dev
 
 # Build
@@ -109,7 +112,8 @@ status: ## Show project status
 	@echo "- Build for production: make build"
 
 # Port helpers (macOS/Linux)
-PORT ?= 5000
+# Port helpers (macOS/Linux)
+# Uses PORT variable (default 5252)
 port-status: ## Show process listening on $(PORT)
 	@echo "Checking port $(PORT)..."; \
 	lsof -nP -iTCP:$(PORT) -sTCP:LISTEN || true

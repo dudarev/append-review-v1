@@ -56,10 +56,10 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
-  // Serve the app on the port specified in PORT (default 5000 for local dev)
+  // Serve the app on the port specified in PORT (default 5252 for local dev)
   // Allow overriding host via HOST or BIND_HOST (default 127.0.0.1 to avoid issues some
   // environments have with 0.0.0.0). Remove unsupported reusePort option.
-  const port = parseInt(process.env.PORT || "5000", 10);
+  const port = parseInt(process.env.PORT || "5252", 10);
   const preferredHost = process.env.HOST || process.env.BIND_HOST || "127.0.0.1";
 
   function startServer(host?: string) {
@@ -83,7 +83,7 @@ app.use((req, res, next) => {
     const code = err.code; // e.g. EADDRINUSE, EACCES, ENOTSUP
     log(`Server listen error (${code || "unknown"}): ${err.message}`);
     if (["EADDRINUSE", "EACCES"].includes(code)) {
-      log(`Port ${port} unavailable. Try: PORT=5001 make dev`);
+      log(`Port ${port} unavailable. Try: make port-status / make kill-port or override: PORT=${port + 1} make dev`);
     } else if (["EAFNOSUPPORT", "EADDRNOTAVAIL", "ENOTSUP", "EINVAL"].includes(code)) {
       if (preferredHost) {
         log(`Retrying without explicit host (letting Node choose)...`);
