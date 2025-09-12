@@ -7,13 +7,22 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 ## [Unreleased]
 
 ### Added
-- Append page: Inline save status next to Editor title ("Saving…" then "Saved" for ~1.6s, no spinner).
+- Append page: Inline save status next to Editor title ("Saving…" then "Saved" for ~1.6s with a subtle fade-out, no spinner).
 - Append page: Persist collapsed/expanded state of Note Extraction Rules in localStorage.
 
 ### Changed
 - Append page: Make editor height responsive (`h-[50vh]` on small screens, `h-[60vh]` on md+, with `min-h-[24rem]`) for better use of space.
 - Improve contrast of the active desktop navigation tab in dark mode for better readability.
 
+## [1.1.10] - 2025-09-12
+
+### Changed
+- About: Backup notice styling refined — only the title and icon are red; body text uses normal color.
+
+## [1.1.9] - 2025-09-12
+
+### Changed
+- About: Move backup reminder to the end and style as destructive (red) for emphasis.
 ## [1.1.8] - 2025-09-12
 
 ### Changed
@@ -94,7 +103,9 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 ### Changed
 - Bumped package version to 1.0.1.
 
-[Unreleased]: https://github.com/dudarev/append-review-v1/compare/v1.1.8...HEAD
+[Unreleased]: https://github.com/dudarev/append-review-v1/compare/v1.1.10...HEAD
+[1.1.10]: https://github.com/dudarev/append-review-v1/compare/v1.1.9...v1.1.10
+[1.1.9]: https://github.com/dudarev/append-review-v1/compare/v1.1.8...v1.1.9
 [1.1.8]: https://github.com/dudarev/append-review-v1/compare/v1.1.7...v1.1.8
 [1.1.7]: https://github.com/dudarev/append-review-v1/compare/v1.1.6...v1.1.7
 [1.1.6]: https://github.com/dudarev/append-review-v1/compare/v1.1.5...v1.1.6
