@@ -16,6 +16,8 @@ export function AppendPage({
   const [isSaving, setIsSaving] = useState(false);
   const [showSaved, setShowSaved] = useState(false);
   const savedTimerRef = useRef<number | null>(null);
+  const fadeTimerRef = useRef<number | null>(null);
+  const [isFadingSaved, setIsFadingSaved] = useState(false);
   const RULES_OPEN_KEY = "append:rulesOpen";
   const [rulesOpen, setRulesOpen] = useState(false);
 
@@ -24,6 +26,15 @@ export function AppendPage({
     if (localContent !== markdownContent) {
       setIsSaving(true);
       setShowSaved(false);
+      setIsFadingSaved(false);
+      if (savedTimerRef.current) {
+        window.clearTimeout(savedTimerRef.current);
+        savedTimerRef.current = null;
+      }
+      if (fadeTimerRef.current) {
+        window.clearTimeout(fadeTimerRef.current);
+        fadeTimerRef.current = null;
+      }
     }
 
     const timer = setTimeout(() => {
@@ -31,16 +42,31 @@ export function AppendPage({
         onMarkdownChange(localContent);
         setIsSaving(false);
         setShowSaved(true);
+        setIsFadingSaved(false);
         if (savedTimerRef.current) window.clearTimeout(savedTimerRef.current);
         savedTimerRef.current = window.setTimeout(() => {
-          setShowSaved(false);
+          setIsFadingSaved(true);
+          if (fadeTimerRef.current) window.clearTimeout(fadeTimerRef.current);
+          fadeTimerRef.current = window.setTimeout(() => {
+            setShowSaved(false);
+            setIsFadingSaved(false);
+            fadeTimerRef.current = null;
+          }, 220);
           savedTimerRef.current = null;
-        }, 1600);
+        }, 1400);
       }
     }, 500);
 
     return () => clearTimeout(timer);
   }, [localContent, markdownContent, onMarkdownChange]);
+
+  // Cleanup any timers on unmount
+  useEffect(() => {
+    return () => {
+      if (savedTimerRef.current) window.clearTimeout(savedTimerRef.current);
+      if (fadeTimerRef.current) window.clearTimeout(fadeTimerRef.current);
+    };
+  }, []);
 
   // Update local content when prop changes
   useEffect(() => {
@@ -108,7 +134,7 @@ Remember to separate notes with blank lines!`;
           <span
             className={cn(
               "text-xs transition-opacity duration-200",
-              isSaving || showSaved ? "opacity-100" : "opacity-0",
+              isSaving || (showSaved && !isFadingSaved) ? "opacity-100" : "opacity-0",
               showSaved && !isSaving ? "text-green-600 dark:text-green-400" : "text-gray-500 dark:text-gray-400"
             )}
             aria-live="polite"

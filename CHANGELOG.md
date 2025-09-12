@@ -14,6 +14,11 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 - Append page: Make editor height responsive (`h-[50vh]` on small screens, `h-[60vh]` on md+, with `min-h-[24rem]`) for better use of space.
 - Improve contrast of the active desktop navigation tab in dark mode for better readability.
 
+## [1.1.8] - 2025-09-12
+
+### Changed
+- About: Add prominent backup reminder and simple backup tips.
+
 ## [1.1.7] - 2025-09-12
 
 ### Added
@@ -89,7 +94,8 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 ### Changed
 - Bumped package version to 1.0.1.
 
-[Unreleased]: https://github.com/dudarev/append-review-v1/compare/v1.1.7...HEAD
+[Unreleased]: https://github.com/dudarev/append-review-v1/compare/v1.1.8...HEAD
+[1.1.8]: https://github.com/dudarev/append-review-v1/compare/v1.1.7...v1.1.8
 [1.1.7]: https://github.com/dudarev/append-review-v1/compare/v1.1.6...v1.1.7
 [1.1.6]: https://github.com/dudarev/append-review-v1/compare/v1.1.5...v1.1.6
 [1.1.4]: https://github.com/dudarev/append-review-v1/compare/v1.1.3...v1.1.4

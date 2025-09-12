@@ -7,7 +7,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Info } from "lucide-react";
+import { Info, AlertTriangle } from "lucide-react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 interface AboutDialogProps {
   trigger?: React.ReactNode;
@@ -37,6 +38,19 @@ export function AboutDialog({ trigger }: AboutDialogProps) {
             <span className="font-medium">Version:</span>
             <span>v{import.meta.env.VITE_APP_VERSION}</span>
           </div>
+
+          <Alert>
+            <AlertTriangle className="h-4 w-4" />
+            <AlertTitle>Important</AlertTitle>
+            <AlertDescription>
+              Back up your data regularly. This app stores everything only in your browser’s localStorage. 
+              Clearing site data, switching browsers/profiles, or some updates can wipe it. Suggested backups:
+              <ul className="list-disc list-inside mt-1">
+                <li>Copy your Markdown from the Append page into a file (e.g., notes.md).</li>
+                <li>Optionally export localStorage via your browser’s developer tools.</li>
+              </ul>
+            </AlertDescription>
+          </Alert>
 
           <div>
             <div className="font-medium mb-2">Links</div>
@@ -114,4 +128,3 @@ export function AboutDialog({ trigger }: AboutDialogProps) {
     </Dialog>
   );
 }
-
