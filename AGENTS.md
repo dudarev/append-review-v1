@@ -38,11 +38,18 @@ This repository hosts a React (Vite) frontend and a lightweight Express server f
 - PRs: clear description, linked issues, screenshots/GIFs for UI, test steps, and note breaking changes.
 
 ## Changelog & Versioning
-- Maintain `CHANGELOG.md` following Keep a Changelog 1.1.0: https://keepachangelog.com/en/1.1.0/
-  - Use an Unreleased section and categorize entries: Added, Changed, Fixed, Deprecated, Removed, Security.
+- Maintain `CHANGELOG.md` per Keep a Changelog 1.1.0: https://keepachangelog.com/en/1.1.0/
+  - Keep an Unreleased section and categorize entries (Added, Changed, Fixed, Deprecated, Removed, Security).
 - Follow Semantic Versioning 2.0.0: https://semver.org/
-  - Bump version in `src/package.json` as needed: MAJOR.MINOR.PATCH.
-  - Tag releases: `git tag -a vX.Y.Z -m "Release vX.Y.Z" && git push --tags`.
+  - Always update CHANGELOG and bump version together in the same PR when behavior, docs, or tooling changes warrant it.
+  - Typical bumps: docs/chore = PATCH, backward‑compatible feature = MINOR, breaking change = MAJOR.
+  - Update `src/package.json` (and lockfile) and move Unreleased entries under the new version with date on release.
+  - Optional: tag releases `git tag -a vX.Y.Z -m "Release vX.Y.Z" && git push --tags`.
+
+## Release Process (Quick)
+- Add/change code; update CHANGELOG under Unreleased.
+- Decide version bump (semver) and update `src/package.json` (e.g., `cd src && npm version patch --no-git-tag-version`).
+- Commit both changes together and open PR; on merge, consider tagging.
 
 ## Security & Configuration Tips
 - No DB; data is stored in browser localStorage (`appendReview:v1`).
