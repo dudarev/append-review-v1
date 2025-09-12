@@ -41,7 +41,6 @@ Run `make help` to see all available commands:
 - `make check` - Run TypeScript type checking
 - `make clean` - Clean build artifacts
 - `make status` - Show project status
-- `make db-info` - Show info about data storage (localStorage)
 - `make build-static` - Build static bundle with relative paths
 - `make build-subdir` - Build static bundle targeted at /append/
 
@@ -53,8 +52,8 @@ This application uses **localStorage** for data persistence as specified in the 
 - **Location:** Browser localStorage
 - **Backup:** Data is stored locally in your browser
 
-### Storage Commands
-- `make db-info` - Show information about localStorage usage
+### Storage Notes
+Uses browser localStorage only; no server/database required.
 
 ## Project Structure
 
@@ -158,7 +157,7 @@ Cloudflare Pages:
 
 Existing site subfolder (e.g. https://example.com/append/):
 1. Run `make build-static` (recommended for portability)
-2. Copy contents of `src/dist/public/` into your site's `append/` directory (or use `make deploy-static DEPLOY_DIR=../my-site SUBDIR_PATH=append`)
+2. Copy contents of `src/dist/public/` into your site's `append/` directory
 3. Link to it with `<a href="/append/">Append & Review</a>`
 
 Configure base path:

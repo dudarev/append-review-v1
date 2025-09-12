@@ -1,24 +1,16 @@
 # Append Review Project Makefile
 # This Makefile helps you set up and run the project locally
 
-.PHONY: help install dev build start clean db-push db-setup check env-example build-static build-subdir 
+.PHONY: help install dev build start clean check build-static build-subdir 
 
 # Default target
 help: ## Show this help message
 	@echo "Available commands:"
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}'
 
-# Environment setup
-env-example: ## Create example environment file
-	@echo "Creating .env.example file..."
-	@echo "# Application Configuration" > src/.env.example
-	@echo "NODE_ENV=development" >> src/.env.example
-	@echo "PORT=5000" >> src/.env.example
-	@echo "" >> src/.env.example
-	@echo "# Optional: Add any environment variables your app needs for future features" >> src/.env.example
-	@echo "# Currently the app uses localStorage only and doesn't require any environment variables" >> src/.env.example
-	@echo "✅ Created src/.env.example"
-	@echo "ℹ️  This app uses localStorage only - no database required"
+##
+# Environment
+# (Example env lives at project root: .env.example)
 
 # Installation
 install: ## Install all dependencies
@@ -55,11 +47,9 @@ start: ## Start production server
 	@echo "Starting production server..."
 	@cd src && npm run start
 
-# Database operations (not used - app uses localStorage)
-db-info: ## Show info about data storage
-	@echo "ℹ️  This app uses localStorage for data persistence"
-	@echo "� Data is stored in browser localStorage under key: appendReview:v1"
-	@echo "🔄 No database setup required"
+##
+# Data storage
+# Uses browser localStorage under key: appendReview:v1 (no DB)
 
 # Type checking
 check: ## Run TypeScript type checking
@@ -90,9 +80,8 @@ setup: ## Complete setup for new developers
 	@echo "🚀 Run 'make dev' to start the development server"
 	@echo ""
 
-# Full development workflow  
-full-setup: setup ## Complete setup (same as setup - no database needed)
-	@echo "🎉 Full setup completed! You can now run 'make dev' to start developing."
+##
+# (Alias removed — use `make setup`)
 
 # Quick development start
 quick-start: ## Quick start for existing setup

@@ -19,11 +19,11 @@ The frontend uses React with TypeScript in a single-page application structure. 
 - **Archive System**: Notes can be archived to remove them from rankings while preserving their data
 
 ## Backend Architecture
-The backend uses Express.js with TypeScript in a minimal API structure:
+The backend uses Express.js with TypeScript in a minimal setup for local development and optional static serving:
 
 - **Server Framework**: Express with middleware for JSON parsing and request logging
-- **Data Layer**: Currently uses in-memory storage with interfaces designed for easy database integration
-- **Route Structure**: Centralized route registration system with API endpoints prefixed with `/api`
+- **Data Layer**: No backend database — app state persists in browser localStorage; server mainly serves the client and dev tooling
+- **Route Structure**: Placeholder routes under `/api` (no persistence)
 - **Development Setup**: Vite integration for development with Hot Module Replacement (HMR)
 
 ## Core Features
@@ -49,11 +49,6 @@ The application uses Zod schemas for type-safe data validation:
 
 # External Dependencies
 
-## Database
-- **Drizzle ORM**: Configured for PostgreSQL with migrations support
-- **Neon Database**: PostgreSQL serverless database (@neondatabase/serverless)
-- **Session Storage**: connect-pg-simple for PostgreSQL-backed sessions
-
 ## UI Framework
 - **React**: Core frontend framework with hooks-based architecture
 - **Radix UI**: Comprehensive set of accessible, unstyled UI primitives
@@ -61,7 +56,7 @@ The application uses Zod schemas for type-safe data validation:
 - **Lucide React**: Modern icon library for consistent iconography
 
 ## Utilities
-- **TanStack Query**: Data fetching and caching (configured but minimal usage)
+- **TanStack Query**: Data fetching and caching (may be unused in v1)
 - **React Hook Form**: Form handling with Zod integration
 - **date-fns**: Date manipulation and formatting
 - **uuid**: Unique identifier generation
