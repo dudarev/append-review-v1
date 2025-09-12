@@ -9,6 +9,11 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 ### Added
 - 
 
+## [1.1.2] - 2025-09-12
+
+### Added
+- AGENTS.md: Voice input/transcription guidance (handle mis-hearings like "node"→"note", clarify ambiguity, prefer minimal reversible changes)
+
 ## [1.1.1] - 2025-09-12
 
 ### Added
@@ -49,7 +54,8 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 ### Changed
 - Bumped package version to 1.0.1.
 
-[Unreleased]: https://github.com/dudarev/append-review-v1/compare/v1.1.1...HEAD
+[Unreleased]: https://github.com/dudarev/append-review-v1/compare/v1.1.2...HEAD
+[1.1.2]: https://github.com/dudarev/append-review-v1/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/dudarev/append-review-v1/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/dudarev/append-review-v1/compare/v1.0.4...v1.1.0
 [1.0.4]: https://github.com/dudarev/append-review-v1/compare/v1.0.3...v1.0.4

@@ -4,7 +4,7 @@ AR is short for Append & Review. This document is a lightweight, running log of 
 
 - Append new ideas at the top (newest first).
 - As ideas become less relevant, move them down; prune when necessary.
-- Keep each idea as a short “node” (1–3 sentences). Separate nodes with a single blank line. Keep it concise and clear.
+- Keep each idea as a short “note” (1–3 sentences). Separate notes with a single blank line. Keep it concise and clear.
 
 Inspiration: Andrej Karpathy’s “The Append and Review Note” — https://karpathy.bearblog.dev/the-append-and-review-note/
 

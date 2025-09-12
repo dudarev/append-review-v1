@@ -70,3 +70,9 @@ This repository hosts a React (Vite) frontend and a lightweight Express server f
   - Core dependencies added/removed (React, Radix UI, Tailwind, Zod, Express)
   - Storage model changes (localStorage vs any backend persistence)
 - Avoid exhaustive dependency lists in docs; link to `src/package.json` instead.
+
+## Voice Input & Transcription
+- Many commands and instructions may be dictated by voice. Expect occasional transcription errors (e.g., "node" instead of "note").
+- When wording is ambiguous, infer intent from context and ask a brief clarification if risk is high.
+- Prefer minimal, reversible changes when acting under ambiguity; document assumptions in the PR/commit description.
+- Normalize obvious mis-transcriptions in UI copy and docs (e.g., use "note" consistently) unless the user explicitly prefers otherwise.
