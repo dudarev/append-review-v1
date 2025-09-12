@@ -1,7 +1,7 @@
 # Append Review Project Makefile
 # This Makefile helps you set up and run the project locally
 
-.PHONY: help install dev build start clean check build-static build-subdir port-status kill-port
+.PHONY: help install dev build start clean check build-static build-subdir port-status kill-port tag push-tags social-png
 
 # Default target
 help: ## Show this help message
@@ -21,6 +21,9 @@ install: ## Install all dependencies
 # Development
 
 PORT ?= 5252
+
+# Current version (from src/package.json)
+VERSION := $(shell node -p "JSON.parse(require('fs').readFileSync('src/package.json','utf8')).version")
 
 dev: ## Start development server (client + server)
 	@echo "Starting development server..."
@@ -111,6 +114,49 @@ status: ## Show project status
 	@echo "- Start development: make dev"
 	@echo "- Build for production: make build"
 
+##
+# Social preview assets
+
+SVG_SRCS := docs/assets/social-preview.svg src/client/public/og-image.svg
+PNG_OUTS := $(SVG_SRCS:.svg=.png)
+
+social-png: $(PNG_OUTS) ## Convert SVG social images to PNG (1200x630)
+	@true
+
+# Pattern rule: .svg -> .png using whichever tool is available locally
+%.png: %.svg
+	@bash -eu -c '\
+	  in="$<"; out="$@"; width=1200; height=630; \
+	  echo "Converting $$in -> $$out ($${width}x$${height})"; \
+	  success=0; \
+	  if command -v rsvg-convert >/dev/null 2>&1; then \
+	    set +e; rsvg-convert -w $$width -h $$height "$$in" -o "$$out"; rc=$$?; set -e; \
+	    if [ $$rc -eq 0 ]; then success=1; fi; \
+	  fi; \
+	  if [ $$success -eq 0 ] && command -v resvg >/dev/null 2>&1; then \
+	    set +e; resvg -w $$width -h $$height "$$in" "$$out"; rc=$$?; set -e; \
+	    if [ $$rc -eq 0 ]; then success=1; fi; \
+	  fi; \
+	  if [ $$success -eq 0 ] && command -v inkscape >/dev/null 2>&1; then \
+	    set +e; inkscape --export-type=png --export-filename="$$out" --export-width=$$width --export-height=$$height "$$in"; rc=$$?; set -e; \
+	    if [ $$rc -eq 0 ]; then success=1; fi; \
+	  fi; \
+	  if [ $$success -eq 0 ] && command -v magick >/dev/null 2>&1; then \
+	    set +e; magick -background none -density 384 "$$in" -resize "$${width}x$${height}" "$$out"; rc=$$?; set -e; \
+	    if [ $$rc -eq 0 ]; then success=1; fi; \
+	  fi; \
+	  if [ $$success -eq 0 ] && command -v convert >/dev/null 2>&1; then \
+	    set +e; convert -background none -density 384 "$$in" -resize "$${width}x$${height}" "$$out"; rc=$$?; set -e; \
+	    if [ $$rc -eq 0 ]; then success=1; fi; \
+	  fi; \
+	  if [ $$success -eq 1 ]; then \
+	    echo "✅ Wrote $$out"; \
+	  else \
+	    echo "❌ Could not convert $$in. Install rsvg-convert, resvg, Inkscape, or ImageMagick."; \
+	    exit 1; \
+	  fi; \
+	'
+
 # Port helpers (macOS/Linux)
 # Port helpers (macOS/Linux)
 # Uses PORT variable (default 5252)
@@ -127,3 +173,20 @@ kill-port: ## Kill any process on $(PORT)
 	else \
 		echo "No process is listening on $(PORT)"; \
 	fi
+
+##
+# Release tagging
+
+tag: ## Create annotated git tag v<version> from src/package.json
+	@echo "Tagging release v$(VERSION)..."
+	@if git rev-parse -q --verify "refs/tags/v$(VERSION)" >/dev/null; then \
+		echo "❌ Tag v$(VERSION) already exists"; \
+		exit 1; \
+	fi
+	@git tag -a v$(VERSION) -m "Release v$(VERSION)"
+	@echo "✅ Created tag v$(VERSION)"
+
+push-tags: ## Push tags to origin (required for GitHub compare links)
+	@echo "Pushing tags to origin..."
+	@git push --tags
+	@echo "✅ Tags pushed"
