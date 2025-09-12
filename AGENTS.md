@@ -37,6 +37,12 @@ This repository hosts a React (Vite) frontend and a lightweight Express server f
   - Make incremental commits as you complete discrete steps; add a final polishing commit if needed.
 - PRs: clear description, linked issues, screenshots/GIFs for UI, test steps, and note breaking changes.
 
+### Commit authorship
+- Always use the repository or global Git user configuration for author/committer identity.
+- Do not pass `-c user.name=... -c user.email=...` to `git commit` or otherwise override author info.
+- If author info is missing, ask the maintainer to set it once (e.g., `git config user.name "Your Name"` and `git config user.email your@email`).
+- If a mistaken author slipped into history, coordinate with the maintainer before rewriting history (amend/rebase) and force‑pushing.
+
 ## Changelog & Versioning
 - Maintain `CHANGELOG.md` per Keep a Changelog 1.1.0: https://keepachangelog.com/en/1.1.0/
   - Keep an Unreleased section and categorize entries (Added, Changed, Fixed, Deprecated, Removed, Security).
