@@ -12,6 +12,8 @@ Scope: This project primarily implements the Review part of that idea. The “Ap
 
 ---
 
+I want to see more text in the review window. Potentially it needs to be wrapped in the placeholder. 
+
 Footer: Add a small footer with links to the GitHub repo and to Karpathy’s note. Consider an “About” link/modal (like Settings) that summarizes the project, version, links, and keyboard shortcuts.
 
 Editor polish: Make editor height responsive (e.g., h-[60vh] with a sensible min). Add a subtle “Saving…” → “Saved” indicator next to the Editor title. Collapse the Note Extraction Rules by default to reduce visual noise.
