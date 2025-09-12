@@ -7,7 +7,10 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 ## [Unreleased]
 
 ### Added
-- 
+- Makefile targets: `tag` (create annotated tag from src/package.json) and `push-tags` (push tags to origin).
+
+### Changed
+- Tagging is now required for every release; AGENTS.md updated to make tagging mandatory and document quick commands. This ensures GitHub compare links resolve correctly.
 
 ## [1.1.2] - 2025-09-12
 

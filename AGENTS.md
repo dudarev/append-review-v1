@@ -44,7 +44,7 @@ This repository hosts a React (Vite) frontend and a lightweight Express server f
   - Always update CHANGELOG and bump version together in the same PR when behavior, docs, or tooling changes warrant it.
   - Typical bumps: docs/chore = PATCH, backward‑compatible feature = MINOR, breaking change = MAJOR.
   - Update `src/package.json` (and lockfile) and move Unreleased entries under the new version with date on release.
-  - Optional: tag releases `git tag -a vX.Y.Z -m "Release vX.Y.Z" && git push --tags`.
+  - Tag every release and push tags so CHANGELOG compare links work. Use annotated tags: `git tag -a vX.Y.Z -m "Release vX.Y.Z" && git push --tags`.
 
 ### Agent expectations (UI changes)
 - Any user-visible UI change must include:
@@ -55,7 +55,15 @@ This repository hosts a React (Vite) frontend and a lightweight Express server f
 ## Release Process (Quick)
 - Add/change code; update CHANGELOG under Unreleased.
 - Decide version bump (semver) and update `src/package.json` (e.g., `cd src && npm version patch --no-git-tag-version`).
-- Commit both changes together and open PR; on merge, consider tagging.
+- Commit both changes together and open PR; merge to main.
+- Tag the release on the merge commit with an annotated tag and push tags (required):
+  - Manual: `git tag -a vX.Y.Z -m "Release vX.Y.Z" && git push --tags`
+  - Or via Make: `make tag` then `make push-tags` (see Makefile)
+
+Notes:
+- Tags must follow `v<semver>` (e.g., `v1.2.3`).
+- Tagging is required so GitHub compare links in CHANGELOG resolve correctly.
+- To backfill missing tags, tag the commit that bumped `src/package.json` and CHANGELOG for each historical version.
 
 ## Security & Configuration Tips
 - No DB; data is stored in browser localStorage (`appendReview:v1`).
