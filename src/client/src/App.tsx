@@ -43,6 +43,11 @@ function AppContent() {
         return; // Don't trigger shortcuts when typing in inputs
       }
 
+      // Don't intercept browser/system shortcuts like Cmd/Ctrl+1..4 (tab switching on macOS/Windows)
+      if (e.metaKey || e.ctrlKey) {
+        return;
+      }
+
       switch (e.key) {
         case '1':
           e.preventDefault();

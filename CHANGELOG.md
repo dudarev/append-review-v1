@@ -14,6 +14,11 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 - Append page: Make editor height responsive (`h-[50vh]` on small screens, `h-[60vh]` on md+, with `min-h-[24rem]`) for better use of space.
 - Improve contrast of the active desktop navigation tab in dark mode for better readability.
 
+## [1.1.11] - 2025-09-12
+
+### Fixed
+- Shortcuts: Do not intercept Cmd/Ctrl+1..4, so browser tab switching works on macOS/Windows. Use plain 1..4 to switch views.
+
 ## [1.1.10] - 2025-09-12
 
 ### Changed

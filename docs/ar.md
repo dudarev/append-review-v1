@@ -16,10 +16,6 @@ Full-view idea: Add an optional full note view from Review (modal) with the comp
 
 I would like command 1, command 2, command 3 work because now when I press them I am not able to navigate to other tabs in Chrome. 
 
-I want to see more text in the review window. Potentially it needs to be wrapped in the placeholder. 
-
-Editor polish: Make editor height responsive (e.g., h-[60vh] with a sensible min). Add a subtle “Saving…” → “Saved” indicator next to the Editor title. Collapse the Note Extraction Rules by default to reduce visual noise.
-
 Discoverability: Show a gentle hint for shortcuts — 1: Append, 2: Review, 3: Ranking, 4: Archive — as a tooltip or in the About dialog.
 
 Data UX: Add export/import of localStorage data to a JSON file (backup/restore and sharing between devices).
