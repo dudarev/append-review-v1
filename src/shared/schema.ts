@@ -17,6 +17,7 @@ export const settingsSchema = z.object({
   pairRatingWindow: z.number().default(200),
   minCandidates: z.number().default(5),
   recencyCapDays: z.number().default(14),
+  reviewTextDensity: z.enum(["compact", "comfortable", "expanded"]).default("comfortable"),
   selectionWeights: z.object({
     recency: z.number().default(0.5),
     lowVotes: z.number().default(0.3),

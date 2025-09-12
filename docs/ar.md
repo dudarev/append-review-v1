@@ -12,6 +12,8 @@ Scope: This project primarily implements the Review part of that idea. The “Ap
 
 ---
 
+Full-view idea: Add an optional full note view from Review (modal) with the complete text and copy action. Keep cards compact by default, allow per-note expand/collapse, and offer a global density setting to control how much text is visible at a glance.
+
 I would like command 1, command 2, command 3 work because now when I press them I am not able to navigate to other tabs in Chrome. 
 
 I want to see more text in the review window. Potentially it needs to be wrapped in the placeholder. 
@@ -25,4 +27,3 @@ Discoverability: Show a gentle hint for shortcuts — 1: Append, 2: Review, 3: R
 Data UX: Add export/import of localStorage data to a JSON file (backup/restore and sharing between devices).
 
 Review pairing: When there are many notes, optionally avoid pairing very low-activity notes repeatedly; offer a “freshness boost” to recently added notes for a short window.
-

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { RotateCcw, ChevronUp, ChevronDown, SkipForward, Archive } from "lucide-react";
+import { RotateCcw, ChevronUp, ChevronDown, SkipForward, Archive, Maximize2, Minimize2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Note } from "@shared/schema";
 
@@ -11,6 +11,7 @@ interface ReviewPageProps {
   onGenerateNewPair: () => void;
   onArchive: (noteId: string) => void;
   canReview: boolean;
+  reviewTextDensity: "compact" | "comfortable" | "expanded";
 }
 
 export function ReviewPage({ 
@@ -18,39 +19,27 @@ export function ReviewPage({
   onVote, 
   onGenerateNewPair,
   onArchive,
-  canReview 
+  canReview,
+  reviewTextDensity,
 }: ReviewPageProps) {
   const [isVoting, setIsVoting] = useState(false);
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
-  // Helper function to truncate note text to first two lines with line length limit
-  const truncateToTwoLines = (text: string) => {
-    const lines = text.split('\n');
-    const maxLineLength = 80; // Adjust this value as needed
-    
-    let processedLines = [];
-    let hasMoreContent = false;
-    
-    for (let i = 0; i < Math.min(2, lines.length); i++) {
-      const line = lines[i];
-      if (line.length > maxLineLength) {
-        processedLines.push(line.substring(0, maxLineLength));
-        hasMoreContent = true;
-      } else {
-        processedLines.push(line);
-      }
+  const heightClass = (isExpanded: boolean) => {
+    if (isExpanded) return "max-h-[60vh]";
+    switch (reviewTextDensity) {
+      case "compact":
+        return "max-h-24 md:max-h-28"; // 6-7rem
+      case "expanded":
+        return "max-h-56 md:max-h-64"; // 14-16rem
+      case "comfortable":
+      default:
+        return "max-h-36 md:max-h-40"; // 9-10rem
     }
-    
-    // Check if there are more lines or if we truncated any line
-    if (lines.length > 2 || hasMoreContent) {
-      if (processedLines.length === 2) {
-        // Add [...] at the end of the second line
-        processedLines[1] = processedLines[1] + ' [...]';
-      } else if (processedLines.length === 1) {
-        processedLines.push('[...]');
-      }
-    }
-    
-    return processedLines.join('\n');
+  };
+
+  const toggleExpand = (noteId: string) => {
+    setExpanded((prev) => ({ ...prev, [noteId]: !prev[noteId] }));
   };
 
   // Keyboard shortcuts
@@ -149,12 +138,27 @@ export function ReviewPage({
                 <Archive className="h-3 w-3 mr-1" />
                 Archive
               </Button>
+              <button
+                onClick={() => toggleExpand(currentPair.noteA.id)}
+                className="absolute bottom-2 right-2 z-10 h-8 px-2 text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-400"
+                aria-label={expanded[currentPair.noteA.id] ? "Collapse" : "Expand"}
+              >
+                {expanded[currentPair.noteA.id] ? (
+                  <span className="inline-flex items-center"><Minimize2 className="h-3 w-3 mr-1" /> Collapse</span>
+                ) : (
+                  <span className="inline-flex items-center"><Maximize2 className="h-3 w-3 mr-1" /> Expand</span>
+                )}
+              </button>
+
               <div className="flex flex-col h-full">
-                <div className="flex-1 pr-16">
-                  <div className="prose dark:prose-invert prose-sm max-w-none h-full">
-                    <pre className="whitespace-pre font-sans text-sm overflow-x-auto overflow-y-hidden h-full leading-6 max-h-12 text-gray-900 dark:text-gray-100">
-                      {truncateToTwoLines(currentPair.noteA.text)}
-                    </pre>
+                <div className="flex-1 pr-2">
+                  <div className="prose dark:prose-invert prose-sm max-w-none h-full relative">
+                    <div className={`whitespace-pre-wrap break-words font-sans text-sm leading-6 text-gray-900 dark:text-gray-100 overflow-y-auto ${heightClass(!!expanded[currentPair.noteA.id])}`}>
+                      {currentPair.noteA.text}
+                    </div>
+                    {!expanded[currentPair.noteA.id] && (
+                      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white dark:from-gray-900 to-transparent" />
+                    )}
                   </div>
                 </div>
               </div>
@@ -174,12 +178,26 @@ export function ReviewPage({
                 <Archive className="h-3 w-3 mr-1" />
                 Archive
               </Button>
+              <button
+                onClick={() => toggleExpand(currentPair.noteB.id)}
+                className="absolute bottom-2 right-2 z-10 h-8 px-2 text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-400"
+                aria-label={expanded[currentPair.noteB.id] ? "Collapse" : "Expand"}
+              >
+                {expanded[currentPair.noteB.id] ? (
+                  <span className="inline-flex items-center"><Minimize2 className="h-3 w-3 mr-1" /> Collapse</span>
+                ) : (
+                  <span className="inline-flex items-center"><Maximize2 className="h-3 w-3 mr-1" /> Expand</span>
+                )}
+              </button>
               <div className="flex flex-col h-full">
-                <div className="flex-1 pr-16">
-                  <div className="prose dark:prose-invert prose-sm max-w-none h-full">
-                    <pre className="whitespace-pre font-sans text-sm overflow-x-auto overflow-y-hidden h-full leading-6 max-h-12 text-gray-900 dark:text-gray-100">
-                      {truncateToTwoLines(currentPair.noteB.text)}
-                    </pre>
+                <div className="flex-1 pr-2">
+                  <div className="prose dark:prose-invert prose-sm max-w-none h-full relative">
+                    <div className={`whitespace-pre-wrap break-words font-sans text-sm leading-6 text-gray-900 dark:text-gray-100 overflow-y-auto ${heightClass(!!expanded[currentPair.noteB.id])}`}>
+                      {currentPair.noteB.text}
+                    </div>
+                    {!expanded[currentPair.noteB.id] && (
+                      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white dark:from-gray-900 to-transparent" />
+                    )}
                   </div>
                 </div>
               </div>
@@ -245,10 +263,24 @@ export function ReviewPage({
                   Archive
                 </Button>
               </div>
-              <div className="prose dark:prose-invert prose-sm max-w-none">
-                <pre className="whitespace-pre font-sans text-sm overflow-x-auto leading-6 max-h-12 overflow-y-hidden text-gray-900 dark:text-gray-100">
-                  {truncateToTwoLines(currentPair.noteA.text)}
-                </pre>
+              <div className="prose dark:prose-invert prose-sm max-w-none relative">
+                <div className={`whitespace-pre-wrap break-words font-sans text-sm leading-6 text-gray-900 dark:text-gray-100 overflow-y-auto ${heightClass(!!expanded[currentPair.noteA.id])}`}>
+                  {currentPair.noteA.text}
+                </div>
+                {!expanded[currentPair.noteA.id] && (
+                  <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white dark:from-gray-900 to-transparent" />
+                )}
+                <button
+                  onClick={() => toggleExpand(currentPair.noteA.id)}
+                  className="absolute -bottom-2 right-0 translate-y-full text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-400"
+                  aria-label={expanded[currentPair.noteA.id] ? "Collapse" : "Expand"}
+                >
+                  {expanded[currentPair.noteA.id] ? (
+                    <span className="inline-flex items-center"><Minimize2 className="h-3 w-3 mr-1" /> Collapse</span>
+                  ) : (
+                    <span className="inline-flex items-center"><Maximize2 className="h-3 w-3 mr-1" /> Expand</span>
+                  )}
+                </button>
               </div>
             </CardContent>
           </Card>
@@ -277,10 +309,24 @@ export function ReviewPage({
                   Archive
                 </Button>
               </div>
-              <div className="prose dark:prose-invert prose-sm max-w-none">
-                <pre className="whitespace-pre font-sans text-sm overflow-x-auto leading-6 max-h-12 overflow-y-hidden text-gray-900 dark:text-gray-100">
-                  {truncateToTwoLines(currentPair.noteB.text)}
-                </pre>
+              <div className="prose dark:prose-invert prose-sm max-w-none relative">
+                <div className={`whitespace-pre-wrap break-words font-sans text-sm leading-6 text-gray-900 dark:text-gray-100 overflow-y-auto ${heightClass(!!expanded[currentPair.noteB.id])}`}>
+                  {currentPair.noteB.text}
+                </div>
+                {!expanded[currentPair.noteB.id] && (
+                  <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white dark:from-gray-900 to-transparent" />
+                )}
+                <button
+                  onClick={() => toggleExpand(currentPair.noteB.id)}
+                  className="absolute -bottom-2 right-0 translate-y-full text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-400"
+                  aria-label={expanded[currentPair.noteB.id] ? "Collapse" : "Expand"}
+                >
+                  {expanded[currentPair.noteB.id] ? (
+                    <span className="inline-flex items-center"><Minimize2 className="h-3 w-3 mr-1" /> Collapse</span>
+                  ) : (
+                    <span className="inline-flex items-center"><Maximize2 className="h-3 w-3 mr-1" /> Expand</span>
+                  )}
+                </button>
               </div>
             </CardContent>
           </Card>

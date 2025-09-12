@@ -6,8 +6,22 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 
 ## [Unreleased]
 
+### Added
+- Append page: Inline save status next to Editor title ("Saving…" then "Saved" for ~1.6s, no spinner).
+- Append page: Persist collapsed/expanded state of Note Extraction Rules in localStorage.
+
 ### Changed
+- Append page: Make editor height responsive (`h-[50vh]` on small screens, `h-[60vh]` on md+, with `min-h-[24rem]`) for better use of space.
 - Improve contrast of the active desktop navigation tab in dark mode for better readability.
+
+## [1.1.7] - 2025-09-12
+
+### Added
+- Review: Per-note expand/collapse controls to quickly toggle full view within cards.
+- Settings: "Review text density" (compact/comfortable/expanded), default comfortable.
+
+### Changed
+- Review: Remove two-line truncation; wrap long lines and show more text by default with height-limited scroll and fade.
 
 ## [1.1.6] - 2025-09-12
 
@@ -75,7 +89,8 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 ### Changed
 - Bumped package version to 1.0.1.
 
-[Unreleased]: https://github.com/dudarev/append-review-v1/compare/v1.1.6...HEAD
+[Unreleased]: https://github.com/dudarev/append-review-v1/compare/v1.1.7...HEAD
+[1.1.7]: https://github.com/dudarev/append-review-v1/compare/v1.1.6...v1.1.7
 [1.1.6]: https://github.com/dudarev/append-review-v1/compare/v1.1.5...v1.1.6
 [1.1.4]: https://github.com/dudarev/append-review-v1/compare/v1.1.3...v1.1.4
 [1.1.4]: https://github.com/dudarev/append-review-v1/compare/v1.1.3...v1.1.4

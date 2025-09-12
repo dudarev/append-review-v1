@@ -127,6 +127,11 @@ export function useNotes() {
     }, 10);
   }, [refreshData]);
 
+  const updateSettings = useCallback((settings: Partial<import("@shared/schema").Settings>) => {
+    storage.updateSettings(settings);
+    setData(storage.getData());
+  }, []);
+
   const archiveNote = useCallback((noteId: string) => {
     storage.archiveNote(noteId);
     
@@ -201,6 +206,7 @@ export function useNotes() {
     unarchiveNote,
     resetRankings,
     clearAllData,
+    updateSettings,
     canReview: activeNotes.length >= 2,
   };
 }
