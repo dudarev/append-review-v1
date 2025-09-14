@@ -32,7 +32,6 @@ function AppContent() {
     unarchiveNote,
     resetRankings,
     clearAllData,
-    updateSettings,
     canReview,
   } = useNotes();
 
@@ -103,7 +102,6 @@ function AppContent() {
             onGenerateNewPair={generateNewPair}
             onArchive={archiveNote}
             canReview={canReview}
-            reviewTextDensity={data.settings.reviewTextDensity}
           />
         );
       case "ranking":
@@ -155,8 +153,6 @@ function AppContent() {
             <SettingsDialog
               onResetRankings={resetRankings}
               onClearAllData={clearAllData}
-              settings={data.settings}
-              onUpdateSettings={updateSettings}
             />
             
             <Button
@@ -189,8 +185,6 @@ function AppContent() {
             <SettingsDialog
               onResetRankings={resetRankings}
               onClearAllData={clearAllData}
-              settings={data.settings}
-              onUpdateSettings={updateSettings}
             />
             <Button
               variant="ghost"

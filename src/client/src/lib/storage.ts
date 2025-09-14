@@ -44,7 +44,6 @@ export class LocalStorage {
         pairRatingWindow: 200,
         minCandidates: 5,
         recencyCapDays: 14,
-        reviewTextDensity: "comfortable",
         selectionWeights: {
           recency: 0.5,
           lowVotes: 0.3,

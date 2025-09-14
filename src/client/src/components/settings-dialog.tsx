@@ -8,14 +8,6 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Settings, AlertTriangle, RotateCcw } from "lucide-react";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -31,11 +23,9 @@ import {
 interface SettingsDialogProps {
   onResetRankings: () => void;
   onClearAllData: () => void;
-  settings: import("@shared/schema").Settings;
-  onUpdateSettings: (settings: Partial<import("@shared/schema").Settings>) => void;
 }
 
-export function SettingsDialog({ onResetRankings, onClearAllData, settings, onUpdateSettings }: SettingsDialogProps) {
+export function SettingsDialog({ onResetRankings, onClearAllData }: SettingsDialogProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -52,22 +42,6 @@ export function SettingsDialog({ onResetRankings, onClearAllData, settings, onUp
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-6">
-          <div className="space-y-2">
-            <Label htmlFor="reviewTextDensity">Review text density</Label>
-            <Select
-              value={settings.reviewTextDensity}
-              onValueChange={(v) => onUpdateSettings({ reviewTextDensity: v as any })}
-            >
-              <SelectTrigger id="reviewTextDensity" className="w-full">
-                <SelectValue placeholder="Choose density" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="compact">Compact</SelectItem>
-                <SelectItem value="comfortable">Comfortable</SelectItem>
-                <SelectItem value="expanded">Expanded</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
 
           <AlertDialog>
             <AlertDialogTrigger asChild>
