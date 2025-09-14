@@ -13,6 +13,11 @@ The format follows Keep a Changelog 1.1.0 and this project adheres to Semantic V
 ### Changed
 - Append page: Make editor height responsive (`h-[50vh]` on small screens, `h-[60vh]` on md+, with `min-h-[24rem]`) for better use of space.
 - Improve contrast of the active desktop navigation tab in dark mode for better readability.
+ - Review: Always show full note content area within card height (scrollable); remove gradient and expand/collapse affordances; add extra top/right padding to prevent Archive button overlap.
+ - Mobile Review: Add bottom padding to the view and a bit of internal padding in cards so the bottom note is fully readable above fixed controls.
+
+### Removed
+- Settings: Review text density option (simplifies UI; default reading experience retained).
 
 ## [1.1.11] - 2025-09-12
 
