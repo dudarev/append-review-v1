@@ -12,11 +12,11 @@ Scope: This project primarily implements the Review part of that idea. The “Ap
 
 ---
 
+Too much empty space when reviewing notes on mobile. 
+
+When Restore button is clicked in the archive view, the note should be visibly removed from the view. 
+
 Full-view idea: Add an optional full note view from Review (modal) with the complete text and copy action. Keep cards compact by default, allow per-note expand/collapse, and offer a global density setting to control how much text is visible at a glance.
-
-I would like command 1, command 2, command 3 work because now when I press them I am not able to navigate to other tabs in Chrome. 
-
-Discoverability: Show a gentle hint for shortcuts — 1: Append, 2: Review, 3: Ranking, 4: Archive — as a tooltip or in the About dialog.
 
 Data UX: Add export/import of localStorage data to a JSON file (backup/restore and sharing between devices).
 
