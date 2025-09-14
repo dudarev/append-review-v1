@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { RotateCcw, ChevronUp, ChevronDown, SkipForward, Archive, Maximize2, Minimize2 } from "lucide-react";
+import { RotateCcw, ChevronUp, ChevronDown, SkipForward, Archive } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Note } from "@shared/schema";
 
@@ -11,7 +11,6 @@ interface ReviewPageProps {
   onGenerateNewPair: () => void;
   onArchive: (noteId: string) => void;
   canReview: boolean;
-  reviewTextDensity: "compact" | "comfortable" | "expanded";
 }
 
 export function ReviewPage({ 
@@ -20,27 +19,9 @@ export function ReviewPage({
   onGenerateNewPair,
   onArchive,
   canReview,
-  reviewTextDensity,
 }: ReviewPageProps) {
   const [isVoting, setIsVoting] = useState(false);
-  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
-
-  const heightClass = (isExpanded: boolean) => {
-    if (isExpanded) return "max-h-[60vh]";
-    switch (reviewTextDensity) {
-      case "compact":
-        return "max-h-24 md:max-h-28"; // 6-7rem
-      case "expanded":
-        return "max-h-56 md:max-h-64"; // 14-16rem
-      case "comfortable":
-      default:
-        return "max-h-36 md:max-h-40"; // 9-10rem
-    }
-  };
-
-  const toggleExpand = (noteId: string) => {
-    setExpanded((prev) => ({ ...prev, [noteId]: !prev[noteId] }));
-  };
+  // Always show full text area within fixed card height; no expand/collapse
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -126,7 +107,7 @@ export function ReviewPage({
       <div className="hidden md:block">
         <div className="grid md:grid-cols-2 gap-6 mb-8">
           <Card className="h-64 relative">
-            <CardContent className="p-6 h-full">
+            <CardContent className="p-6 pt-10 h-full overflow-hidden">
               <Button
                 onClick={() => onArchive(currentPair.noteA.id)}
                 disabled={isVoting}
@@ -138,27 +119,13 @@ export function ReviewPage({
                 <Archive className="h-3 w-3 mr-1" />
                 Archive
               </Button>
-              <button
-                onClick={() => toggleExpand(currentPair.noteA.id)}
-                className="absolute bottom-2 right-2 z-10 h-8 px-2 text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-400"
-                aria-label={expanded[currentPair.noteA.id] ? "Collapse" : "Expand"}
-              >
-                {expanded[currentPair.noteA.id] ? (
-                  <span className="inline-flex items-center"><Minimize2 className="h-3 w-3 mr-1" /> Collapse</span>
-                ) : (
-                  <span className="inline-flex items-center"><Maximize2 className="h-3 w-3 mr-1" /> Expand</span>
-                )}
-              </button>
 
-              <div className="flex flex-col h-full">
-                <div className="flex-1 pr-2">
-                  <div className="prose dark:prose-invert prose-sm max-w-none h-full relative">
-                    <div className={`whitespace-pre-wrap break-words font-sans text-sm leading-6 text-gray-900 dark:text-gray-100 overflow-y-auto ${heightClass(!!expanded[currentPair.noteA.id])}`}>
+              <div className="flex flex-col h-full min-h-0">
+                <div className="flex-1 pr-4 md:pr-10 min-h-0">
+                  <div className="prose dark:prose-invert prose-sm max-w-none h-full relative min-h-0">
+                    <div className="whitespace-pre-wrap break-words font-sans text-sm leading-6 text-gray-900 dark:text-gray-100 h-full overflow-y-auto">
                       {currentPair.noteA.text}
                     </div>
-                    {!expanded[currentPair.noteA.id] && (
-                      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white dark:from-gray-900 to-transparent" />
-                    )}
                   </div>
                 </div>
               </div>
@@ -166,7 +133,7 @@ export function ReviewPage({
           </Card>
 
           <Card className="h-64 relative">
-            <CardContent className="p-6 h-full">
+            <CardContent className="p-6 pt-10 h-full overflow-hidden">
               <Button
                 onClick={() => onArchive(currentPair.noteB.id)}
                 disabled={isVoting}
@@ -178,26 +145,12 @@ export function ReviewPage({
                 <Archive className="h-3 w-3 mr-1" />
                 Archive
               </Button>
-              <button
-                onClick={() => toggleExpand(currentPair.noteB.id)}
-                className="absolute bottom-2 right-2 z-10 h-8 px-2 text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-400"
-                aria-label={expanded[currentPair.noteB.id] ? "Collapse" : "Expand"}
-              >
-                {expanded[currentPair.noteB.id] ? (
-                  <span className="inline-flex items-center"><Minimize2 className="h-3 w-3 mr-1" /> Collapse</span>
-                ) : (
-                  <span className="inline-flex items-center"><Maximize2 className="h-3 w-3 mr-1" /> Expand</span>
-                )}
-              </button>
-              <div className="flex flex-col h-full">
-                <div className="flex-1 pr-2">
-                  <div className="prose dark:prose-invert prose-sm max-w-none h-full relative">
-                    <div className={`whitespace-pre-wrap break-words font-sans text-sm leading-6 text-gray-900 dark:text-gray-100 overflow-y-auto ${heightClass(!!expanded[currentPair.noteB.id])}`}>
+              <div className="flex flex-col h-full min-h-0">
+                <div className="flex-1 pr-4 md:pr-10 min-h-0">
+                  <div className="prose dark:prose-invert prose-sm max-w-none h-full relative min-h-0">
+                    <div className="whitespace-pre-wrap break-words font-sans text-sm leading-6 text-gray-900 dark:text-gray-100 h-full overflow-y-auto">
                       {currentPair.noteB.text}
                     </div>
-                    {!expanded[currentPair.noteB.id] && (
-                      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white dark:from-gray-900 to-transparent" />
-                    )}
                   </div>
                 </div>
               </div>
@@ -242,11 +195,11 @@ export function ReviewPage({
       </div>
 
       {/* Mobile Layout */}
-      <div className="md:hidden space-y-4">
+      <div className="md:hidden space-y-4 pb-40">
         {/* Stacked Cards */}
         <div className="space-y-4">
-          <Card className="min-h-32 relative">
-            <CardContent className="p-4">
+          <Card className="min-h-32 max-h-[40vh] relative overflow-hidden">
+            <CardContent className="p-4 pt-8 h-full overflow-hidden">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wide">
                   Top Note
@@ -263,24 +216,10 @@ export function ReviewPage({
                   Archive
                 </Button>
               </div>
-              <div className="prose dark:prose-invert prose-sm max-w-none relative">
-                <div className={`whitespace-pre-wrap break-words font-sans text-sm leading-6 text-gray-900 dark:text-gray-100 overflow-y-auto ${heightClass(!!expanded[currentPair.noteA.id])}`}>
+              <div className="prose dark:prose-invert prose-sm max-w-none relative h-full min-h-0">
+                <div className="whitespace-pre-wrap break-words font-sans text-sm leading-6 text-gray-900 dark:text-gray-100 h-full overflow-y-auto pb-2">
                   {currentPair.noteA.text}
                 </div>
-                {!expanded[currentPair.noteA.id] && (
-                  <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white dark:from-gray-900 to-transparent" />
-                )}
-                <button
-                  onClick={() => toggleExpand(currentPair.noteA.id)}
-                  className="absolute -bottom-2 right-0 translate-y-full text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-400"
-                  aria-label={expanded[currentPair.noteA.id] ? "Collapse" : "Expand"}
-                >
-                  {expanded[currentPair.noteA.id] ? (
-                    <span className="inline-flex items-center"><Minimize2 className="h-3 w-3 mr-1" /> Collapse</span>
-                  ) : (
-                    <span className="inline-flex items-center"><Maximize2 className="h-3 w-3 mr-1" /> Expand</span>
-                  )}
-                </button>
               </div>
             </CardContent>
           </Card>
@@ -291,8 +230,8 @@ export function ReviewPage({
             </div>
           </div>
 
-          <Card className="min-h-32 relative">
-            <CardContent className="p-4">
+          <Card className="min-h-32 max-h-[40vh] relative overflow-hidden">
+            <CardContent className="p-4 pt-8 h-full overflow-hidden">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wide">
                   Bottom Note
@@ -309,24 +248,10 @@ export function ReviewPage({
                   Archive
                 </Button>
               </div>
-              <div className="prose dark:prose-invert prose-sm max-w-none relative">
-                <div className={`whitespace-pre-wrap break-words font-sans text-sm leading-6 text-gray-900 dark:text-gray-100 overflow-y-auto ${heightClass(!!expanded[currentPair.noteB.id])}`}>
+              <div className="prose dark:prose-invert prose-sm max-w-none relative h-full min-h-0">
+                <div className="whitespace-pre-wrap break-words font-sans text-sm leading-6 text-gray-900 dark:text-gray-100 h-full overflow-y-auto pb-2">
                   {currentPair.noteB.text}
                 </div>
-                {!expanded[currentPair.noteB.id] && (
-                  <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-white dark:from-gray-900 to-transparent" />
-                )}
-                <button
-                  onClick={() => toggleExpand(currentPair.noteB.id)}
-                  className="absolute -bottom-2 right-0 translate-y-full text-xs text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-400"
-                  aria-label={expanded[currentPair.noteB.id] ? "Collapse" : "Expand"}
-                >
-                  {expanded[currentPair.noteB.id] ? (
-                    <span className="inline-flex items-center"><Minimize2 className="h-3 w-3 mr-1" /> Collapse</span>
-                  ) : (
-                    <span className="inline-flex items-center"><Maximize2 className="h-3 w-3 mr-1" /> Expand</span>
-                  )}
-                </button>
               </div>
             </CardContent>
           </Card>
